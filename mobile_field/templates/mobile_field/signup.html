@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Regester</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      body{
+        height: 100vh;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container{
+        height: 80vh;
+        width: 40%;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      }
+      .container .heading{
+        text-align: center;
+        padding-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="heading">
+        <h1>Regester</h1>
+      </div>
+      <form action="/signup/" method="post">{% csrf_token %}
+          <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="fname" name="fname" required>
+          </div>
+          <div class="mb-3">
+            <label for="second_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="sname" name="lname" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Send otp</button>
+          </div>
+      </form>
+      <form action="/signup/" method="get">{% csrf_token %}
+        {% if otp_system %}
+          <div class="mb-3">
+            <label for="email" class="form-label">Enter OTP</label>
+            <input type="number" class="form-control" id="otp" name="otp" placeholder="Check your email for OTP">
+          </div>
+        {% else %}
+          <div class="mb-3">
+            <label for="email" class="form-label">Enter OTP</label>
+            <input type="number" class="form-control" id="otp" name="otp" placeholder="Check your email for OTP" disabled>
+          </div>
+        {% endif %}
+        <div class="mb-3">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+          <div class="mb-3">
+            You have already regestered <a href="/login/">login</a>
+          </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>
